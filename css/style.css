@@ -167,6 +167,20 @@ summary { font-weight: bold; outline: none; }
     text-decoration: underline;
 }
 
+/* centriramo kompas */
+body.export-mode .chart-container {
+    margin: 20px auto !important;
+    width: 100% !important;
+    max-width: 750px !important;
+    position: static !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+body.export-mode canvas#compassChart {
+    margin: 0 auto !important;
+}
+
 /* =========================================
    OPTIMIZACIJA ZA MOBILNE UREĐAJE (100% ŠIRINA I TAČNA SLIKA)
    ========================================= */
@@ -216,4 +230,5 @@ summary { font-weight: bold; outline: none; }
         padding: 15px;
     }
     .pol-btn { width: 100%; text-align: center; }
+
 }

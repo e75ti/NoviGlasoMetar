@@ -48,19 +48,22 @@
             const shareBtn = document.querySelector('.btn-share');
             
             shareBtn.innerText = "⏳ Generišem 9:16 Story...";
-            shareBtn.style.pointerEvents = "none"; // Spriječava dupli klik
+            shareBtn.style.pointerEvents = "none";
+
+            // KLJUČNO: Dodajemo klasu na body koja privremeno gasi mobilne margine!
+            document.body.classList.add("export-mode");
 
             // Čuvamo originalni stil da ga možemo vratiti
             const originalStyle = exportArea.style.cssText;
             
-            // Privremeno pretvaramo export-area u tačan 9:16 format (npr. rezolucija 1080x1920 svedena na radnu mjeru 900x1600)
+            // Privremeno pretvaramo export-area u tačan 9:16 format
             exportArea.style.width = "900px";
             exportArea.style.height = "1600px";
             exportArea.style.display = "flex";
             exportArea.style.flexDirection = "column";
             exportArea.style.justifyContent = "center";
             exportArea.style.alignItems = "center";
-            exportArea.style.padding = "80px 60px"; // Dodaje bočne margine i prostor gore/dolje
+            exportArea.style.padding = "80px 50px";
             exportArea.style.background = "#ffffff";
             exportArea.style.boxSizing = "border-box";
             exportArea.style.overflow = "hidden";
@@ -69,7 +72,7 @@
             // Slikamo tačno fiksirani dio sa zadatim dimenzijama
             html2canvas(exportArea, {
                 backgroundColor: "#ffffff",
-                scale: 2, // Daje visoku oštrinu (retina kvalitet)
+                scale: 2, // Daje visoku oštrinu
                 width: 900,
                 height: 1600,
                 windowWidth: 900,
@@ -77,18 +80,20 @@
                 useCORS: true
             }).then(canvas => {
                 let link = document.createElement('a');
-                link.download = 'NoviGlasoMetar_Rezultati';
+                link.download = 'NoviGlasoMetar_Rezultati.png';
                 link.href = canvas.toDataURL('image/png');
                 link.click();
                 
                 // Vraćamo originalni izgled stranice
                 exportArea.style.cssText = originalStyle;
+                // KLJUČNO: Brišemo privremenu klasu
+                document.body.classList.remove("export-mode");
+                
                 shareBtn.innerText = "📸 Preuzmi svoje rezultate kao sliku!";
                 shareBtn.style.pointerEvents = "auto";
             });
         }
     </script>
-
 
 </body>
 </html>
