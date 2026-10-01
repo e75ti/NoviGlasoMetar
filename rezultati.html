@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vaši Rezultati - GlasoMetar</title>
+    <title>Vaši Rezultati - NoviGlasoMetar</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -36,7 +36,7 @@
             <p><strong>Spiritualni političari i ograničen broj?</strong> Zbog tehničkih i vremenskih ograničenja (constrainst) bilo je nemoguće savršeno mapirati mišljenja i obraditi stotine hiljada glasanja svih poslanika na svim nivoima u BiH. Zato uzorak sadrži 68 prominentnih i aktivnih parlamentaraca. Pojedinci izlistani u Vašim rezultatima služe kao "spiritualni" predstavnici Vaše ideologije – imajte na umu da pojedinci nerijetko odstupaju od zvaničnog statuta svoje stranke u stvarnim glasanjima.</p>
             <p><strong>Kreator projekta i motivacija kreacije istog:</strong> Kreator ovog projekta je entuzijasta i proponent slobode ljudi, ljubavi i sloge, koji gaji i ljubav prema hobiju - obradi podataka, radio amaterizmu, astronomiji, Linux-u, matematici, kontributor dosta velikih projekata i patcheva za razne distro-e, Wikimedia tim i tako dalje... <br>Također i networking kroz radio amaterizam, slobodno me i dodajte na platformama, pošaljite poruku, uvijek ću pomoći ako kome šta treba ili ima tko kakvu ideju / pitanje za šta! I vice versa, nadam se :) Svakako trenutno i job-huntam, pa ^^ Hit me up! :D<br><br><b>Moji kontakti i linkovi:</b><ul><li>Moj blog: <a href="https://ituco.dev">ituco.dev</a></li><li>Moj GitHub: <a href="https://github.com/e75ti">github.com/e75ti</a></li></ul></p>
         </div>
-        <button class="btn-share" onclick="downloadImage()">📸 Preuzmi za Instagram / Story</button>
+        <button class="btn-share" onclick="downloadImage()">📸 Preuzmi svoje rezultate kao sliku!</button>
     </div>
     
     <script src="js/rezultati.js"></script>
@@ -46,33 +46,48 @@
             const exportArea = document.getElementById("export-area");
             const shareBtn = document.querySelector('.btn-share');
             
-            shareBtn.innerText = "⏳ Generišem sliku...";
+            shareBtn.innerText = "⏳ Generišem 9:16 Story...";
             shareBtn.style.pointerEvents = "none"; // Spriječava dupli klik
 
-            // Mali vizuelni popravci prije slikanja
-            exportArea.style.padding = "20px";
-            exportArea.style.background = "#ffffff";
+            // Čuvamo originalni stil da ga možemo vratiti
+            const originalStyle = exportArea.style.cssText;
             
-            // KLJUČNO ZA MOBITELE: Popravlja bug sa pomaknutom slikom
+            // Privremeno pretvaramo export-area u tačan 9:16 format (npr. rezolucija 1080x1920 svedena na radnu mjeru 900x1600)
+            exportArea.style.width = "900px";
+            exportArea.style.height = "1600px";
+            exportArea.style.display = "flex";
+            exportArea.style.flexDirection = "column";
+            exportArea.style.justifyContent = "center";
+            exportArea.style.alignItems = "center";
+            exportArea.style.padding = "80px 60px"; // Dodaje bočne margine i prostor gore/dolje
+            exportArea.style.background = "#ffffff";
+            exportArea.style.boxSizing = "border-box";
+            exportArea.style.overflow = "hidden";
+            exportArea.style.position = "relative";
+
+            // Slikamo tačno fiksirani dio sa zadatim dimenzijama
             html2canvas(exportArea, {
                 backgroundColor: "#ffffff",
-                scale: 2, // Zadržavamo visoku rezoluciju
-                scrollY: -window.scrollY, // Fiksira problem ako je korisnik skrolao dolje
-                windowWidth: document.documentElement.offsetWidth, // Fiksira širinu
-                useCORS: true // Pomaže ako se slike povlače s drugog izvora
+                scale: 2, // Daje visoku oštrinu (retina kvalitet)
+                width: 900,
+                height: 1600,
+                windowWidth: 900,
+                windowHeight: 1600,
+                useCORS: true
             }).then(canvas => {
                 let link = document.createElement('a');
-                link.download = 'GlasoMetar_Moj_Profil.png';
+                link.download = 'NoviGlasoMetar_Rezultati';
                 link.href = canvas.toDataURL('image/png');
                 link.click();
                 
-                // Vraćanje na staro nakon preuzimanja
-                exportArea.style.padding = "0px";
-                exportArea.style.background = "transparent";
-                shareBtn.innerText = "📸 Preuzmi za Instagram / Story";
+                // Vraćamo originalni izgled stranice
+                exportArea.style.cssText = originalStyle;
+                shareBtn.innerText = "📸 Preuzmi svoje rezultate kao sliku!";
                 shareBtn.style.pointerEvents = "auto";
             });
         }
     </script>
+
+
 </body>
 </html>

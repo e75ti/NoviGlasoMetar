@@ -148,6 +148,25 @@ summary { font-weight: bold; outline: none; }
 .disclaimer-footer a { color: #1a4375; font-weight: 700; text-decoration: none; }
 .disclaimer-footer a:hover { text-decoration: underline; color: #dc2626; }
 
+.index-footer {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #64748b;
+    font-weight: 500;
+}
+.index-footer a {
+    color: #1a4375;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.index-footer a:hover {
+    color: #dc2626;
+    text-decoration: underline;
+}
+
 /* =========================================
    OPTIMIZACIJA ZA MOBILNE UREĐAJE (100% ŠIRINA I TAČNA SLIKA)
    ========================================= */
@@ -165,7 +184,7 @@ summary { font-weight: bold; outline: none; }
         padding: 15px 10px !important;
         box-shadow: none !important;
     }
-    
+
     /* Kontejner grafikona sada prirodno zauzima sav prostor */
     .chart-container {
         position: relative !important;
