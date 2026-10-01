@@ -39,7 +39,7 @@ function izracunajPrikaziRezultate(userAnswers, partiesData, realityData) {
         userPos[axis] = maxScores[axis] === 0 ? 50 : Math.round(((rawScores[axis] + maxScores[axis]) / (2 * maxScores[axis])) * 100);
     });
 
-    // 1. Iscrtavanje 8values traka
+    // 1. ISCRTAVANJE 8VALUES TRAKA
     const axesContainer = document.getElementById('axes-container');
     const renderBar = (title, leftLabel, rightLabel, leftClass, rightClass, val) => {
         const leftPercent = 100 - val;
@@ -66,7 +66,7 @@ function izracunajPrikaziRezultate(userAnswers, partiesData, realityData) {
         renderBar("Geopolitika", "Euro-atlantizam (Zapad)", "Suverenizam (Istok / Neutralnost)", "for-left", "for-right", userPos.foreign);
 
 
-    // 2. Mapiranje stranaka
+    // 2. IZRACUNAVANJE STRANAKA
     let matches = [];
     for (const [partyId, party] of Object.entries(partiesData)) {
         let diff = 0;
@@ -80,53 +80,58 @@ function izracunajPrikaziRezultate(userAnswers, partiesData, realityData) {
 
     const resultsDiv = document.getElementById('results-list');
     const individualsDiv = document.getElementById('individuals-list');
-
+    resultsDiv.innerHTML = ""; 
+    
+    let individualsHtml = '<div class="politician-list">';
     let topParties = matches.slice(0, 3);
     
     topParties.forEach(m => {
-        // Generisanje Reality Checka
         let realityHtml = '';
         let count = 0;
         for (const [zakonId, zakonData] of Object.entries(realityData)) {
-            if (zakonData.glasovi[m.short] && count < 3) {
+            if (zakonData.glasovi[m.short] && count < 2) {
+                let bojaGlasa = zakonData.glasovi[m.short] === "ZA" ? "green" : (zakonData.glasovi[m.short] === "PROTIV" ? "red" : "gray");
                 realityHtml += `<div class="rc-item">
-                                    <div style="font-size:12px; color:#64748b; margin-bottom:4px;">${zakonData.datum} | ${zakonData.sjednica}</div>
-                                    <strong style="color:#1e293b;">${zakonData.tema}</strong><br>
-                                    <div style="margin-top:5px;">Glas stranke: <span class="vote-${zakonData.glasovi[m.short]}">${zakonData.glasovi[m.short]}</span></div>
+                                    <strong>Akt:</strong> ${zakonData.tema}<br>
+                                    <strong>Stav stranke:</strong> <span style="color:${bojaGlasa}; font-weight:bold;">${zakonData.glasovi[m.short]}</span>
                                 </div>`;
                 count++;
             }
         }
 
         resultsDiv.innerHTML += `
-            <div class="party-card" style="border-left: 8px solid ${m.color}">
-                <h2>${m.name} <span style="float:right; color:${m.color};">${m.match}%</span></h2>
-                <p class="party-desc"><i>${m.stance_summary}</i></p>
+            <div class="party-card" style="border-left: 5px solid ${m.color}">
+                <h2>${m.name} (${m.match}%)</h2>
+                <p><i>${m.stance_summary}</i></p>
                 <details>
-                    <summary>🗳️ Zvanična glasanja stranke (Reality Check)</summary>
+                    <summary>🗳️ Zvanična glasanja stranke (Fact Check)</summary>
                     <div class="details-content">${realityHtml || 'Nema izvještaja.'}</div>
                 </details>
             </div>
         `;
 
-        // Generisanje Političara
+        // 3. PRIKAZ "SPIRITUALNIH" POLITIČARA (Lijepe kartice!)
         if (m.zastupnici && m.zastupnici.length > 0) {
             let zastupnik = m.zastupnici[0]; 
-            individualsDiv.innerHTML += `
-                <div class="politician-card" style="border-left: 8px solid ${m.color}">
-                    <h3 style="margin:0 0 5px 0; font-size:22px;">👤 ${zastupnik.ime}</h3>
-                    <p style="margin:0; font-size:15px; color:#64748b;">Zastupnik stranke <b>${m.name}</b> (${m.match}% Vašeg poklapanja)</p>
-                    <a href="${zastupnik.link}" target="_blank" class="pol-link">Provjeri glasački karton na Gianni Ravioli ↗</a>
+            individualsHtml += `
+                <div class="pol-card" style="border-color: ${m.color};">
+                    <div class="pol-info">
+                        <h3>👤 ${zastupnik.ime}</h3>
+                        <p>Član stranke: <b>${m.short}</b> (${m.match}% poklapanja)</p>
+                    </div>
+                    <a href="${zastupnik.link}" target="_blank" class="pol-btn">Glasački karton ↗</a>
                 </div>
             `;
         }
     });
 
+    individualsHtml += '</div>';
+    individualsDiv.innerHTML = individualsHtml === '<div class="politician-list"></div>' ? '<p>Nema dostupnih zastupnika za vaš rezultat.</p>' : individualsHtml;
+
     iscrtajKompas(userPos, matches);
 }
 
-// 3. Iscrtavanje poboljšanog 2D Kompasa (Ekonomija X, Društvo Y)
-// Ovu funkciju zamijeni na dnu rezultati.js fajla
+// 4. CHART.JS KOMPAS (POPRAVLJENI KRUGOVI)
 function iscrtajKompas(userPos, matches) {
     const ctx = document.getElementById('compassChart').getContext('2d');
     const mapToAxis = (val) => ((val - 50) / 5); 
@@ -134,36 +139,38 @@ function iscrtajKompas(userPos, matches) {
     let datasets = [{
         label: ' Vaša pozicija',
         data: [{ x: mapToAxis(userPos.econ), y: mapToAxis(userPos.society) * -1 }],
-        backgroundColor: '#0C2340',
+        backgroundColor: '#000000',
         borderColor: '#ffffff',
         borderWidth: 2,
-        pointRadius: 12,
-        pointStyle: 'rectRot' // Vaša pozicija ostaje istaknuti romb
+        pointRadius: 10,
+        pointStyle: 'rectRot' // Vaša pozicija (Romb)
     }];
 
-    // Dodajemo stranke na graf uz pokušaj učitavanja slike
-    matches.slice(0, 8).forEach(m => {
-        let pointStyle = 'circle';
-        let img = new Image();
-        img.src = `img/${m.short}.png`; // Ovdje traži sliku npr. img/SDA.png
-        
-        // Ako se slika učita, koristi nju umjesto kružića
-        img.onload = function() {
-            let meta = chartInstance.getDatasetMeta(datasets.findIndex(d => d.label === ' ' + m.short));
-            if(meta) meta.data[0].options.pointStyle = img;
-            chartInstance.update();
-        };
+    // Kreiramo globalnu instancu koju mozemo update-ovati ako se slika ucita
+    let chartInstance;
 
-        datasets.push({
+    matches.slice(0, 5).forEach(m => {
+        // Ovdje je ključan fiks: DEFAULTNO POSTAVLJAMO KRUG ('circle')
+        let dataset = {
             label: ' ' + m.short,
             data: [{ x: mapToAxis(m.scores.econ), y: mapToAxis(m.scores.society) * -1 }],
             backgroundColor: m.color,
-            pointRadius: 10,
-            pointStyle: img // Pokušava postaviti sliku odmah
-        });
+            pointRadius: 8,
+            pointStyle: 'circle' // STARTA KAO KRUG
+        };
+        datasets.push(dataset);
+
+        // Pokušava naći sliku. Ako je nema, nikom ništa, ostaje krug!
+        let img = new Image();
+        img.src = `img/${m.short}.png`; 
+        
+        img.onload = function() {
+            dataset.pointStyle = img;
+            if(chartInstance) chartInstance.update();
+        };
     });
 
-    const chartInstance = new Chart(ctx, {
+    chartInstance = new Chart(ctx, {
         type: 'scatter',
         data: { datasets: datasets },
         options: {
@@ -171,21 +178,17 @@ function iscrtajKompas(userPos, matches) {
             aspectRatio: 1, 
             plugins: {
                 legend: { position: 'bottom', labels: { usePointStyle: true, padding: 20 } },
-                tooltip: {
-                    callbacks: {
-                        label: (ctx) => ctx.dataset.label
-                    }
-                }
+                tooltip: { callbacks: { label: (ctx) => ctx.dataset.label } }
             },
             scales: {
                 x: { 
                     min: -10, max: 10, 
-                    title: { display: true, text: '⬅ Ekonomija (Država vs Tržište) ➡', font: { weight: 'bold' } },
+                    title: { display: true, text: '⬅ Intervencionizam | Slobodno tržište ➡', font: { weight: 'bold' } },
                     grid: { color: (ctx) => ctx.tick.value === 0 ? '#000000' : '#e2e8f0', lineWidth: (ctx) => ctx.tick.value === 0 ? 2 : 1 }
                 },
                 y: { 
                     min: -10, max: 10, 
-                    title: { display: true, text: '⬅ Društvo (Tradicionalno vs Progresivno) ➡', font: { weight: 'bold' } },
+                    title: { display: true, text: '⬅ Tradicionalno | Progresivno ➡', font: { weight: 'bold' } },
                     grid: { color: (ctx) => ctx.tick.value === 0 ? '#000000' : '#e2e8f0', lineWidth: (ctx) => ctx.tick.value === 0 ? 2 : 1 }
                 }
             }
