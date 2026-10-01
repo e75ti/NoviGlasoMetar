@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaši Rezultati - GlasoMetar</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Chart.js biblioteka za 2D Kompas -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="header">Vaš Politički Profil</div>
+    <div class="container" id="capture-area">
+        
+        <!-- 2D Politički Kompas -->
+        <div class="chart-container">
+            <canvas id="compassChart"></canvas>
+        </div>
+
+        <h3>Vaše najbolje podudarnosti:</h3>
+        <div id="results-list"></div>
+        <button class="btn-share" onclick="downloadImage()">📸 Preuzmi rezultate za Story / Mreže</button>
+    </div>
+    
+    <script src="js/rezultati.js"></script>
+<!-- HTML2Canvas biblioteka -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        function downloadImage() {
+            // Skriva nepotrebne elemente prije slikanja (poput dugmeta i otvorenih padajućih menija)
+            document.querySelector('.btn-share').style.display = 'none';
+            const detailsElements = document.querySelectorAll('details');
+            detailsElements.forEach(d => d.removeAttribute('open'));
+
+            // Slikanje 'capture-area' div-a
+            html2canvas(document.getElementById("capture-area"), {
+                backgroundColor: "#ffffff",
+                scale: 2 // Veća rezolucija za Instagram
+            }).then(canvas => {
+                let link = document.createElement('a');
+                link.download = 'Moj_Izborni_Kompas_BiH.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                
+                // Vraćanje dugmeta nakon slikanja
+                document.querySelector('.btn-share').style.display = 'block';
+            });
+        }
+    </script>
+</body>
+</html>

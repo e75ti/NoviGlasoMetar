@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlasoMetar BiH</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="header">Izborni Kompas BiH 2026</div>
+    <div class="container">
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="question-text" id="question-text">Učitavanje...</div>
+        <div class="btn-group">
+            <button class="btn btn-1" onclick="answer(1.0)">Snažno se slažem</button>
+            <button class="btn btn-2" onclick="answer(0.5)">Slažem se</button>
+            <button class="btn btn-3" onclick="answer(0.0)">Neutralan / Ne znam</button>
+            <button class="btn btn-4" onclick="answer(-0.5)">Ne slažem se</button>
+            <button class="btn btn-5" onclick="answer(-1.0)">Snažno se protivim</button>
+        </div>
+        <div class="progress-text" id="progress-text">Pitanje 1</div>
+    </div>
+    <script src="js/kviz.js"></script>
+</body>
+</html>

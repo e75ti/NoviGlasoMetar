@@ -1,0 +1,370 @@
+{
+  "SDA": {
+    "name": "Stranka demokratske akcije",
+    "short": "SDA",
+    "scores": {
+      "econ": 40,
+      "state": 10,
+      "society": 75,
+      "foreign": 85
+    },
+    "color": "#008751",
+    "stance_summary": "Građanska država uz očuvanje bošnjačke komponente; društveno konzervativna, pro-EU.",
+    "zastupnici": [
+      {
+        "ime": "Диана Чекић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-13064731927/"
+      },
+      {
+        "ime": "Ненад Стевандић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-13423815354/"
+      },
+      {
+        "ime": "Velibor Stanić",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-12848212019/"
+      },
+      {
+        "ime": "Jasmin Emrić",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-15399938542/"
+      },
+      {
+        "ime": "Игор Црнадак",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-11935262666/"
+      },
+      {
+        "ime": "Aleksandar Subotić",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-13913784761/"
+      }
+    ]
+  },
+  "SDP": {
+    "name": "Socijaldemokratska partija BiH",
+    "short": "SDP",
+    "scores": {
+      "econ": 30,
+      "state": 15,
+      "society": 25,
+      "foreign": 90
+    },
+    "color": "#E30613",
+    "stance_summary": "Klasična socijaldemokracija i sekularizam; građansko uređenje bez etničkih podjela.",
+    "zastupnici": [
+      {
+        "ime": "Дарко Бабаљ",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-10071753277/"
+      },
+      {
+        "ime": "Срђан Мазалица",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-10703182343/"
+      },
+      {
+        "ime": "Огњен Бодирога",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-17137696840/"
+      }
+    ]
+  },
+  "NS": {
+    "name": "Naša stranka",
+    "short": "NS",
+    "scores": {
+      "econ": 65,
+      "state": 5,
+      "society": 10,
+      "foreign": 95
+    },
+    "color": "#F39200",
+    "stance_summary": "Socijal-liberalna stranka; slobodno tržište, prava manjina i strogo građansko uređenje.",
+    "zastupnici": [
+      {
+        "ime": "Желимир Нешковић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-14997755396/"
+      },
+      {
+        "ime": "Владо Ђајић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-16858789248/"
+      }
+    ]
+  },
+  "NiP": {
+    "name": "Narod i pravda",
+    "short": "NiP",
+    "scores": {
+      "econ": 70,
+      "state": 15,
+      "society": 80,
+      "foreign": 85
+    },
+    "color": "#0C2340",
+    "stance_summary": "Desni centar; privatno poduzetništvo, borba protiv korupcije i tradicionalne vrijednosti.",
+    "zastupnici": [
+      {
+        "ime": "Костадин Васић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-16459875196/"
+      }
+    ]
+  },
+  "DF": {
+    "name": "Demokratska fronta",
+    "short": "DF",
+    "scores": {
+      "econ": 30,
+      "state": 5,
+      "society": 35,
+      "foreign": 85
+    },
+    "color": "#D32F2F",
+    "stance_summary": "Lijevi centar; beskompromisno unitarno građansko uređenje.",
+    "zastupnici": [
+      {
+        "ime": "Драшко Станивуковић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-10852734809/"
+      },
+      {
+        "ime": "Midhat Čaušević",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-10286911402/"
+      }
+    ]
+  },
+  "HDZ BiH": {
+    "name": "Hrvatska demokratska zajednica BiH",
+    "short": "HDZ BiH",
+    "scores": {
+      "econ": 60,
+      "state": 85,
+      "society": 75,
+      "foreign": 85
+    },
+    "color": "#003399",
+    "stance_summary": "Kršćanska demokracija; ključni prioritet je legitimno političko predstavljanje Hrvata.",
+    "zastupnici": [
+      {
+        "ime": "Максим Скоко",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-19109658437/"
+      },
+      {
+        "ime": "Predrag Kojović",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-15834751421/"
+      }
+    ]
+  },
+  "SNSD": {
+    "name": "Savez nezavisnih socijaldemokrata",
+    "short": "SNSD",
+    "scores": {
+      "econ": 50,
+      "state": 95,
+      "society": 80,
+      "foreign": 10
+    },
+    "color": "#C8102E",
+    "stance_summary": "Autonomija RS-a i decentralizacija; društveno tradicionalna, protivi se NATO-u.",
+    "zastupnici": [
+      {
+        "ime": "Игор Жунић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-18564467803/"
+      },
+      {
+        "ime": "Ацо Станишић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-12217091995/"
+      },
+      {
+        "ime": "Mirsad Duratović",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-18218965443/"
+      },
+      {
+        "ime": "Миланко Михајилица",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-18544537019/"
+      },
+      {
+        "ime": "Драган Брдар",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-13918225809/"
+      },
+      {
+        "ime": "Šemsudin Mehmedović",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-17985653671/"
+      },
+      {
+        "ime": "Denis Zvizdić",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-10805104317/"
+      },
+      {
+        "ime": "Željko Dubravac",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-16676426629/"
+      },
+      {
+        "ime": "Ненад Лаловић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-11108209238/"
+      },
+      {
+        "ime": "Тамара Евђић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-16020289238/"
+      },
+      {
+        "ime": "Andrea Gajić",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-11371428341/"
+      }
+    ]
+  },
+  "SDS": {
+    "name": "Srpska demokratska stranka",
+    "short": "SDS",
+    "scores": {
+      "econ": 45,
+      "state": 85,
+      "society": 75,
+      "foreign": 30
+    },
+    "color": "#1E3A8A",
+    "stance_summary": "Desni centar; inzistira na Daytonskom sporazumu i očuvanju RS-a.",
+    "zastupnici": [
+      {
+        "ime": "Дарко Бањац",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-15566976810/"
+      },
+      {
+        "ime": "Денис Пијетловић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-10450307611/"
+      },
+      {
+        "ime": "Rejhana Dervišević",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-12237553078/"
+      },
+      {
+        "ime": "Amor Mašović",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-14590119007/"
+      },
+      {
+        "ime": "Нина Букејловић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-13561852271/"
+      }
+    ]
+  },
+  "PDP": {
+    "name": "Partija demokratskog progresa",
+    "short": "PDP",
+    "scores": {
+      "econ": 55,
+      "state": 80,
+      "society": 60,
+      "foreign": 50
+    },
+    "color": "#0055A5",
+    "stance_summary": "Ekonomski liberalna; porezno rasterećenje i EU integracije uz autonomiju entiteta.",
+    "zastupnici": [
+      {
+        "ime": "Бранислав Бореновић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-11370406931/"
+      },
+      {
+        "ime": "Радојица Видовић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-16214618456/"
+      },
+      {
+        "ime": "Sabina Ćudić",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-16678730088/"
+      },
+      {
+        "ime": "Небојша Дринић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-10439354080/"
+      },
+      {
+        "ime": "Safet Kešo",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-17691582651/"
+      },
+      {
+        "ime": "Маја Драгојевић-Стојић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-18886231353/"
+      },
+      {
+        "ime": "Darijana Filipović",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-15144289610/"
+      }
+    ]
+  },
+  "Za pravdu i red": {
+    "name": "Lista Nebojše Vukanovića",
+    "short": "Za pravdu i red",
+    "scores": {
+      "econ": 40,
+      "state": 75,
+      "society": 65,
+      "foreign": 40
+    },
+    "color": "#F59E0B",
+    "stance_summary": "Beskompromisni antikorupcijski populizam, socijalna pravda i vladavina prava.",
+    "zastupnici": [
+      {
+        "ime": "Милан Трнинић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-18326363940/"
+      },
+      {
+        "ime": "Загорка Граховац",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-18017725654/"
+      },
+      {
+        "ime": "Драгомир Васић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-12639590821/"
+      },
+      {
+        "ime": "Šerif Špago",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-11121117707/"
+      }
+    ]
+  },
+  "DEMOS": {
+    "name": "Demokratski savez",
+    "short": "DEMOS",
+    "scores": {
+      "econ": 55,
+      "state": 85,
+      "society": 70,
+      "foreign": 40
+    },
+    "color": "#5e35b1",
+    "stance_summary": "Umjerena opcija orijentisana na kompromise u RS-u, podržava tržišnu ekonomiju.",
+    "zastupnici": [
+      {
+        "ime": "Споменка Стевановић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-11289087563/"
+      },
+      {
+        "ime": "Čedomir Stojanović",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-16414166565/"
+      },
+      {
+        "ime": "Петко Ранкић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-15700111444/"
+      },
+      {
+        "ime": "Илија Таминџија",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-10112400060/"
+      }
+    ]
+  },
+  "US": {
+    "name": "Ujedinjena Srpska",
+    "short": "US",
+    "scores": {
+      "econ": 60,
+      "state": 95,
+      "society": 80,
+      "foreign": 20
+    },
+    "color": "#e53935",
+    "stance_summary": "Izrazito nacionalno orijentisana, insistira na zaštiti interesa RS-a.",
+    "zastupnici": [
+      {
+        "ime": "Nebojša Vukanović",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-18671849907/"
+      },
+      {
+        "ime": "Мирна Савић-Бањац",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-14494912246/"
+      },
+      {
+        "ime": "Vlatko Glavaš",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-19446620335/"
+      }
+    ]
+  }
+}
