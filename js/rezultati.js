@@ -126,47 +126,66 @@ function izracunajPrikaziRezultate(userAnswers, partiesData, realityData) {
 }
 
 // 3. Iscrtavanje poboljšanog 2D Kompasa (Ekonomija X, Društvo Y)
+// Ovu funkciju zamijeni na dnu rezultati.js fajla
 function iscrtajKompas(userPos, matches) {
     const ctx = document.getElementById('compassChart').getContext('2d');
-    const mapToAxis = (val) => ((val - 50) / 5); // Skalira 0-100 na -10 do +10
+    const mapToAxis = (val) => ((val - 50) / 5); 
     
     let datasets = [{
         label: ' Vaša pozicija',
-        data: [{ x: mapToAxis(userPos.econ), y: mapToAxis(userPos.society) * -1 }], // Invertujemo Y da gore bude progresivno
+        data: [{ x: mapToAxis(userPos.econ), y: mapToAxis(userPos.society) * -1 }],
         backgroundColor: '#0C2340',
         borderColor: '#ffffff',
         borderWidth: 2,
         pointRadius: 12,
-        pointStyle: 'circle'
+        pointStyle: 'rectRot' // Vaša pozicija ostaje istaknuti romb
     }];
 
-    matches.slice(0, 7).forEach(m => {
+    // Dodajemo stranke na graf uz pokušaj učitavanja slike
+    matches.slice(0, 8).forEach(m => {
+        let pointStyle = 'circle';
+        let img = new Image();
+        img.src = `img/${m.short}.png`; // Ovdje traži sliku npr. img/SDA.png
+        
+        // Ako se slika učita, koristi nju umjesto kružića
+        img.onload = function() {
+            let meta = chartInstance.getDatasetMeta(datasets.findIndex(d => d.label === ' ' + m.short));
+            if(meta) meta.data[0].options.pointStyle = img;
+            chartInstance.update();
+        };
+
         datasets.push({
             label: ' ' + m.short,
             data: [{ x: mapToAxis(m.scores.econ), y: mapToAxis(m.scores.society) * -1 }],
             backgroundColor: m.color,
-            pointRadius: 8
+            pointRadius: 10,
+            pointStyle: img // Pokušava postaviti sliku odmah
         });
     });
 
-    new Chart(ctx, {
+    const chartInstance = new Chart(ctx, {
         type: 'scatter',
         data: { datasets: datasets },
         options: {
             responsive: true,
-            aspectRatio: 1, // Kvadratni graf
+            aspectRatio: 1, 
             plugins: {
-                legend: { position: 'bottom', labels: { usePointStyle: true, padding: 20 } }
+                legend: { position: 'bottom', labels: { usePointStyle: true, padding: 20 } },
+                tooltip: {
+                    callbacks: {
+                        label: (ctx) => ctx.dataset.label
+                    }
+                }
             },
             scales: {
                 x: { 
                     min: -10, max: 10, 
-                    title: { display: true, text: '⬅ Intervencionizam | Slobodno tržište ➡', font: { weight: 'bold' } },
+                    title: { display: true, text: '⬅ Ekonomija (Država vs Tržište) ➡', font: { weight: 'bold' } },
                     grid: { color: (ctx) => ctx.tick.value === 0 ? '#000000' : '#e2e8f0', lineWidth: (ctx) => ctx.tick.value === 0 ? 2 : 1 }
                 },
                 y: { 
                     min: -10, max: 10, 
-                    title: { display: true, text: '⬅ Tradicionalno | Progresivno ➡', font: { weight: 'bold' } },
+                    title: { display: true, text: '⬅ Društvo (Tradicionalno vs Progresivno) ➡', font: { weight: 'bold' } },
                     grid: { color: (ctx) => ctx.tick.value === 0 ? '#000000' : '#e2e8f0', lineWidth: (ctx) => ctx.tick.value === 0 ? 2 : 1 }
                 }
             }
