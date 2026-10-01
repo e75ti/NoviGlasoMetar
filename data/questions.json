@@ -5,7 +5,7 @@
   { "id": "q4", "theme": "Ekonomija", "question": "Smanjenje doprinosa na plate privredi je važnije od održavanja trenutnog nivoa plata u javnoj upravi.", "effect": { "econ": 10 } },
   { "id": "q5", "theme": "Ekonomija", "question": "Vlast treba administrativno nametnuti visoku minimalnu platu, bez obzira na negodovanje udruženja poslodavaca.", "effect": { "econ": -8 } },
   { "id": "q6", "theme": "Ekonomija", "question": "Zaštita rijeka mora biti ispred profita; treba trajno zabraniti gradnju malih hidroelektrana.", "effect": { "econ": -8 } },
-  { "id": "q7", "theme": "Ekonomija", "question": "Poreze treba naplaćivati po progresivnoj stopi — bogatiji građani moraju plaćati veći procenat.", "effect": { "econ": -10 } },
+  { "id": "q7", "theme": "Ekonomija", "question": "Poreze treba naplaćivati po progresivnoj stopi - bogatiji građani moraju plaćati veći procenat.", "effect": { "econ": -10 } },
   { "id": "q8", "theme": "Ekonomija", "question": "Uvoz strane robe treba opteretiti dodatnim carinama kako bi se zaštitila domaća poljoprivreda.", "effect": { "econ": -8 } },
   { "id": "q9", "theme": "Ustav", "question": "Domove naroda treba ukinuti, a zakone donositi po principu 'jedan čovjek - jedan glas'.", "effect": { "state": -10 } },
   { "id": "q10", "theme": "Ustav", "question": "Izborni zakon mora garantovati da svaki konstitutivni narod bira isključivo svoje političke predstavnike.", "effect": { "state": 10 } },
