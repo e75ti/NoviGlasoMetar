@@ -169,10 +169,10 @@ summary { font-weight: bold; outline: none; }
     /* Kontejner grafikona sada prirodno zauzima sav prostor */
     .chart-container {
         position: relative !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 auto 30px auto !important;
-        padding: 5px !important; 
+        width: calc(100% + 20px) !important;
+        max-width: none !important;
+        margin: 0 -10px 30px -10px !important;
+        padding: 0 !important;
         border: none !important;
         background: transparent !important;
     }
