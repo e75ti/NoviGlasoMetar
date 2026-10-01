@@ -1,15 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const resultsDiv = document.getElementById('results-list');
     const userAnswersStr = localStorage.getItem('userAnswers');
-
     if (!userAnswersStr) {
-        resultsDiv.innerHTML = "<h3 style='color:red;'>Nema odgovora! Riješite <a href='kviz.html'>kviz</a>.</h3>";
+        document.getElementById('capture-area').innerHTML = "<h3 style='color:red; text-align:center;'>Nema odgovora! Riješite <a href='kviz.html'>kviz</a>.</h3>";
         return;
     }
 
     const userAnswers = JSON.parse(userAnswersStr);
 
-    // Sada učitavamo samo 2 fajla! Zastupnici su već unutar parties.json
     Promise.all([
         fetch('data/parties.json').then(res => res.json()),
         fetch('data/reality_full.json').then(res => res.json())
@@ -20,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(err => {
         console.error(err);
-        resultsDiv.innerHTML = `<h3 style='color:red;'>Greška pri učitavanju podataka.</h3><p>${err.message}</p>`;
+        document.getElementById('capture-area').innerHTML = `<h3 style='color:red;'>Greška pri učitavanju podataka.</h3><p>${err.message}</p>`;
     });
 });
 
@@ -42,6 +39,34 @@ function izracunajPrikaziRezultate(userAnswers, partiesData, realityData) {
         userPos[axis] = maxScores[axis] === 0 ? 50 : Math.round(((rawScores[axis] + maxScores[axis]) / (2 * maxScores[axis])) * 100);
     });
 
+    // 1. Iscrtavanje 8values traka
+    const axesContainer = document.getElementById('axes-container');
+    const renderBar = (title, leftLabel, rightLabel, leftClass, rightClass, val) => {
+        const leftPercent = 100 - val;
+        const rightPercent = val;
+        return `
+            <div class="axis">
+                <div class="axis-title">${title}</div>
+                <div class="bar-container">
+                    <div class="${leftClass} bar-left" style="width: ${leftPercent}%">${leftPercent > 10 ? leftPercent + '%' : ''}</div>
+                    <div class="${rightClass} bar-right" style="width: ${rightPercent}%">${rightPercent > 10 ? rightPercent + '%' : ''}</div>
+                </div>
+                <div class="axis-labels">
+                    <span>${leftLabel}</span>
+                    <span>${rightLabel}</span>
+                </div>
+            </div>
+        `;
+    };
+
+    axesContainer.innerHTML = 
+        renderBar("Ekonomija", "Državni Intervencionizam", "Slobodno Tržište", "econ-left", "econ-right", userPos.econ) +
+        renderBar("Ustrojstvo Države", "Građansko / Centralizovano", "Etničko / Decentralizovano", "state-left", "state-right", userPos.state) +
+        renderBar("Društvo i Kultura", "Progresivno / Sekularno", "Tradicionalno / Konzervativno", "soc-left", "soc-right", userPos.society) +
+        renderBar("Geopolitika", "Euro-atlantizam (Zapad)", "Suverenizam (Istok / Neutralnost)", "for-left", "for-right", userPos.foreign);
+
+
+    // 2. Mapiranje stranaka
     let matches = [];
     for (const [partyId, party] of Object.entries(partiesData)) {
         let diff = 0;
@@ -54,72 +79,73 @@ function izracunajPrikaziRezultate(userAnswers, partiesData, realityData) {
     matches.sort((a, b) => b.match - a.match);
 
     const resultsDiv = document.getElementById('results-list');
-    resultsDiv.innerHTML = ""; 
+    const individualsDiv = document.getElementById('individuals-list');
 
-    matches.forEach(m => {
-        // Zastupnike sada čitamo direktno iz stranke (m.zastupnici)
-        let zastupniciHtml = '';
-        if (m.zastupnici && m.zastupnici.length > 0) {
-            zastupniciHtml = m.zastupnici.map(z => 
-                `<li><a href="${z.link}" target="_blank">${z.ime} (Provjeri glasanja)</a></li>`
-            ).join('');
-        }
-
+    let topParties = matches.slice(0, 3);
+    
+    topParties.forEach(m => {
+        // Generisanje Reality Checka
         let realityHtml = '';
         let count = 0;
         for (const [zakonId, zakonData] of Object.entries(realityData)) {
             if (zakonData.glasovi[m.short] && count < 3) {
-                let bojaGlasa = zakonData.glasovi[m.short] === "ZA" ? "green" : (zakonData.glasovi[m.short] === "PROTIV" ? "red" : "gray");
                 realityHtml += `<div class="rc-item">
-                                    <strong>Akt:</strong> ${zakonData.tema}<br>
-                                    <strong>Glasali:</strong> <span style="color:${bojaGlasa}; font-weight:bold;">${zakonData.glasovi[m.short]}</span>
+                                    <div style="font-size:12px; color:#64748b; margin-bottom:4px;">${zakonData.datum} | ${zakonData.sjednica}</div>
+                                    <strong style="color:#1e293b;">${zakonData.tema}</strong><br>
+                                    <div style="margin-top:5px;">Glas stranke: <span class="vote-${zakonData.glasovi[m.short]}">${zakonData.glasovi[m.short]}</span></div>
                                 </div>`;
                 count++;
             }
         }
 
         resultsDiv.innerHTML += `
-            <div class="party-card" style="border-left: 5px solid ${m.color}">
-                <h2>${m.name} (${m.match}%)</h2>
-                <p><i>${m.stance_summary}</i></p>
-                
+            <div class="party-card" style="border-left: 8px solid ${m.color}">
+                <h2>${m.name} <span style="float:right; color:${m.color};">${m.match}%</span></h2>
+                <p class="party-desc"><i>${m.stance_summary}</i></p>
                 <details>
-                    <summary>🗳️ Provjera stvarnih glasanja (Reality Check)</summary>
-                    <div class="details-content">${realityHtml || 'Trenutno nema dostupnih izvještaja sa sjednica.'}</div>
-                </details>
-
-                <details>
-                    <summary>👤 Pojedinačni zastupnici</summary>
-                    <div class="details-content">
-                        <p class="disclaimer">Kliknite na imena ispod kako biste na nezavisnoj platformi 'Gianni Ravioli' vidjeli njihove stvarne glasačke kartone.</p>
-                        <ul>${zastupniciHtml || 'Nema evidentiranih zastupnika.'}</ul>
-                    </div>
+                    <summary>🗳️ Zvanična glasanja stranke (Reality Check)</summary>
+                    <div class="details-content">${realityHtml || 'Nema izvještaja.'}</div>
                 </details>
             </div>
         `;
+
+        // Generisanje Političara
+        if (m.zastupnici && m.zastupnici.length > 0) {
+            let zastupnik = m.zastupnici[0]; 
+            individualsDiv.innerHTML += `
+                <div class="politician-card" style="border-left: 8px solid ${m.color}">
+                    <h3 style="margin:0 0 5px 0; font-size:22px;">👤 ${zastupnik.ime}</h3>
+                    <p style="margin:0; font-size:15px; color:#64748b;">Zastupnik stranke <b>${m.name}</b> (${m.match}% Vašeg poklapanja)</p>
+                    <a href="${zastupnik.link}" target="_blank" class="pol-link">Provjeri glasački karton na Gianni Ravioli ↗</a>
+                </div>
+            `;
+        }
     });
 
     iscrtajKompas(userPos, matches);
 }
 
+// 3. Iscrtavanje poboljšanog 2D Kompasa (Ekonomija X, Društvo Y)
 function iscrtajKompas(userPos, matches) {
     const ctx = document.getElementById('compassChart').getContext('2d');
-    const mapToAxis = (val) => ((val - 50) / 5);
+    const mapToAxis = (val) => ((val - 50) / 5); // Skalira 0-100 na -10 do +10
     
     let datasets = [{
-        label: 'Vi',
-        data: [{ x: mapToAxis(userPos.econ), y: mapToAxis(userPos.society) }],
-        backgroundColor: '#000000',
-        pointRadius: 10,
-        pointStyle: 'rectRot'
+        label: ' Vaša pozicija',
+        data: [{ x: mapToAxis(userPos.econ), y: mapToAxis(userPos.society) * -1 }], // Invertujemo Y da gore bude progresivno
+        backgroundColor: '#0C2340',
+        borderColor: '#ffffff',
+        borderWidth: 2,
+        pointRadius: 12,
+        pointStyle: 'circle'
     }];
 
-    matches.slice(0, 5).forEach(m => {
+    matches.slice(0, 7).forEach(m => {
         datasets.push({
-            label: m.short,
-            data: [{ x: mapToAxis(m.scores.econ), y: mapToAxis(m.scores.society) }],
+            label: ' ' + m.short,
+            data: [{ x: mapToAxis(m.scores.econ), y: mapToAxis(m.scores.society) * -1 }],
             backgroundColor: m.color,
-            pointRadius: 7
+            pointRadius: 8
         });
     });
 
@@ -128,9 +154,21 @@ function iscrtajKompas(userPos, matches) {
         data: { datasets: datasets },
         options: {
             responsive: true,
+            aspectRatio: 1, // Kvadratni graf
+            plugins: {
+                legend: { position: 'bottom', labels: { usePointStyle: true, padding: 20 } }
+            },
             scales: {
-                x: { min: -10, max: 10, title: { display: true, text: 'Ljevica (Država) ⟷ Desnica (Tržište)' } },
-                y: { min: -10, max: 10, title: { display: true, text: 'Progresivno ⟷ Tradicionalno' } }
+                x: { 
+                    min: -10, max: 10, 
+                    title: { display: true, text: '⬅ Intervencionizam | Slobodno tržište ➡', font: { weight: 'bold' } },
+                    grid: { color: (ctx) => ctx.tick.value === 0 ? '#000000' : '#e2e8f0', lineWidth: (ctx) => ctx.tick.value === 0 ? 2 : 1 }
+                },
+                y: { 
+                    min: -10, max: 10, 
+                    title: { display: true, text: '⬅ Tradicionalno | Progresivno ➡', font: { weight: 'bold' } },
+                    grid: { color: (ctx) => ctx.tick.value === 0 ? '#000000' : '#e2e8f0', lineWidth: (ctx) => ctx.tick.value === 0 ? 2 : 1 }
+                }
             }
         }
     });
