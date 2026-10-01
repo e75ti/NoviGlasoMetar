@@ -54,6 +54,10 @@
         "link": "https://gianniravioli.com/mashinerija/ljudi/o-10071753277/"
       },
       {
+        "ime": "Ђорђе Вучинић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-11458570425/"
+      },
+      {
         "ime": "Срђан Мазалица",
         "link": "https://gianniravioli.com/mashinerija/ljudi/o-10703182343/"
       },
@@ -182,6 +186,10 @@
       {
         "ime": "Šemsudin Mehmedović",
         "link": "https://gianniravioli.com/mashinerija/ljudi/o-17985653671/"
+      },
+      {
+        "ime": "Albin Muslić",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-12648404629/"
       },
       {
         "ime": "Denis Zvizdić",
@@ -338,6 +346,10 @@
       {
         "ime": "Илија Таминџија",
         "link": "https://gianniravioli.com/mashinerija/ljudi/o-10112400060/"
+      },
+      {
+        "ime": "Сузана Гашић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-10881195191/"
       }
     ]
   },
@@ -366,5 +378,101 @@
         "link": "https://gianniravioli.com/mashinerija/ljudi/o-19446620335/"
       }
     ]
+  },
+  "SBiH": {
+    "name": "Stranka za Bosnu i Hercegovinu",
+    "short": "SBiH",
+    "scores": {
+      "econ": 45,
+      "state": 10,
+      "society": 65,
+      "foreign": 85
+    },
+    "color": "#005C38",
+    "stance_summary": "Fokusirana na snažnu centralizaciju države, povratak i euroatlantski put.",
+    "zastupnici": []
+  },
+  "NES": {
+    "name": "Narodni evropski savez",
+    "short": "NES",
+    "scores": {
+      "econ": 55,
+      "state": 20,
+      "society": 70,
+      "foreign": 85
+    },
+    "color": "#009933",
+    "stance_summary": "Regionalno jaka stranka (USK) sa proevropskim i umjereno desnim centrističkim programom.",
+    "zastupnici": [
+      {
+        "ime": "Предраг Нешић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-13655627118/"
+      },
+      {
+        "ime": "Мирела Кајкут Зељковић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-15440319642/"
+      }
+    ]
+  },
+  "HDZ 1990": {
+    "name": "Hrvatska demokratska zajednica 1990",
+    "short": "HDZ 1990",
+    "scores": {
+      "econ": 55,
+      "state": 80,
+      "society": 70,
+      "foreign": 85
+    },
+    "color": "#1877F2",
+    "stance_summary": "Hrvatska alternativa, bliska kršćanskoj demokraciji, fokusirana na euroatlantski put.",
+    "zastupnici": []
+  },
+  "Narodni Front": {
+    "name": "Narodni Front",
+    "short": "Narodni Front",
+    "scores": {
+      "econ": 50,
+      "state": 80,
+      "society": 65,
+      "foreign": 60
+    },
+    "color": "#000000",
+    "stance_summary": "Opoziciona stranka u RS-u s jasnim antikorupcijskim narativom.",
+    "zastupnici": [
+      {
+        "ime": "Радислав Дончић",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-10147562366/"
+      },
+      {
+        "ime": "Zlatan Begić",
+        "link": "https://gianniravioli.com/mashinerija/ljudi/o-11300278259/"
+      }
+    ]
+  },
+  "SBB": {
+    "name": "Savez za bolju budućnost",
+    "short": "SBB",
+    "scores": {
+      "econ": 65,
+      "state": 20,
+      "society": 60,
+      "foreign": 85
+    },
+    "color": "#2E8B57",
+    "stance_summary": "Pro-poslovna stranka, orijentisana na infrastrukturne projekte i ekonomske reforme.",
+    "zastupnici": []
+  },
+  "BHI KF": {
+    "name": "BHI Kasumović Fuad",
+    "short": "BHI KF",
+    "scores": {
+      "econ": 60,
+      "state": 15,
+      "society": 55,
+      "foreign": 85
+    },
+    "color": "#FFD700",
+    "stance_summary": "Lokalno fokusirana stranka naglašeno protiv birokratije i sistemske korupcije.",
+    "zastupnici": []
   }
 }
