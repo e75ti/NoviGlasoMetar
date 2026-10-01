@@ -138,29 +138,28 @@ function iscrtajKompas(userPos, matches) {
     
     let datasets = [{
         label: ' Vaša pozicija',
-        data: [{ x: mapToAxis(userPos.econ), y: mapToAxis(userPos.society) * -1 }],
+        // Uklonjeno * -1: Sada progresivno ide u minus (dolje), tradicionalno u plus (gore)
+        data: [{ x: mapToAxis(userPos.econ), y: mapToAxis(userPos.society) }],
         backgroundColor: '#000000',
         borderColor: '#ffffff',
         borderWidth: 2,
         pointRadius: 10,
-        pointStyle: 'rectRot' // Vaša pozicija (Romb)
+        pointStyle: 'rectRot'
     }];
 
-    // Kreiramo globalnu instancu koju mozemo update-ovati ako se slika ucita
     let chartInstance;
 
-    matches.slice(0, 5).forEach(m => {
-        // Ovdje je ključan fiks: DEFAULTNO POSTAVLJAMO KRUG ('circle')
+    matches.slice(0, 8).forEach(m => {
         let dataset = {
             label: ' ' + m.short,
-            data: [{ x: mapToAxis(m.scores.econ), y: mapToAxis(m.scores.society) * -1 }],
+            // Uklonjeno * -1
+            data: [{ x: mapToAxis(m.scores.econ), y: mapToAxis(m.scores.society) }],
             backgroundColor: m.color,
             pointRadius: 8,
-            pointStyle: 'circle' // STARTA KAO KRUG
+            pointStyle: 'circle'
         };
         datasets.push(dataset);
 
-        // Pokušava naći sliku. Ako je nema, nikom ništa, ostaje krug!
         let img = new Image();
         img.src = `img/${m.short}.png`; 
         
@@ -183,12 +182,13 @@ function iscrtajKompas(userPos, matches) {
             scales: {
                 x: { 
                     min: -10, max: 10, 
-                    title: { display: true, text: '⬅ Intervencionizam | Slobodno tržište ➡', font: { weight: 'bold' } },
+                    title: { display: true, text: '⬅ Ljevica (Država) | Desnica (Tržište) ➡', font: { weight: 'bold' } },
                     grid: { color: (ctx) => ctx.tick.value === 0 ? '#000000' : '#e2e8f0', lineWidth: (ctx) => ctx.tick.value === 0 ? 2 : 1 }
                 },
                 y: { 
                     min: -10, max: 10, 
-                    title: { display: true, text: '⬅ Tradicionalno | Progresivno ➡', font: { weight: 'bold' } },
+                    // Obrnuti nazivi da odgovaraju vrijednostima (-10 do +10)
+                    title: { display: true, text: '⬅ Progresivno (Slobodarsko) | Tradicionalno (Autoritarno) ➡', font: { weight: 'bold' } },
                     grid: { color: (ctx) => ctx.tick.value === 0 ? '#000000' : '#e2e8f0', lineWidth: (ctx) => ctx.tick.value === 0 ? 2 : 1 }
                 }
             }
