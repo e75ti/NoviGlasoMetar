@@ -11,8 +11,7 @@
     <div class="header">Vaš Politički Profil</div>
     
     <div class="container" id="capture-area">
-        
-        <!-- OVDJE JE BILA GREŠKA: Nedostajao je ovaj div za 8values trake -->
+      <div id="export-area" class="export-box">
         <h2 class="section-title">1. Vaše političke osi (8values)</h2>
         <div id="axes-container"></div>
 
@@ -20,23 +19,22 @@
         <div class="chart-container">
             <canvas id="compassChart"></canvas>
         </div>
-
+      </div>
         <h2 class="section-title">3. Stranke koje Vam programski odgovaraju</h2>
         <div id="results-list"></div>
 
         <h2 class="section-title">4. Vaši "spiritualni" političari</h2>
         <div id="individuals-list"></div>
         <div class="disclaimer-footer">
-            <h3>📝 O projektu i podacima (Odricanje od odgovornosti)</h3>
-            <p><strong>Napomena:</strong> Ovi rezultati su kreirani od strane entuzijasta i ne trebaju se uzimati zdravo za gotovo. Aplikacija je <i>open-source</i> i koristi matematičku aproksimaciju ideoloških stavova (Manhattan distance) za poređenje sa strankama.</p>
-            <p><strong>Zašto samo ovih 68 političara?</strong> Zbog tehničkih i vremenskih ograničenja, nemoguće je savršeno mapirati mišljenja apsolutno svih poslanika u državi. Ovaj uzorak se sastoji od 68 vrlo aktivnih parlamentaraca čiji su glasački kartoni izvučeni kako bi Vam pružili "spiritualnu" aproksimaciju s kim se slažete. Pojedinci ne moraju nužno uvijek predstavljati sve zvanične politike svoje stranke, pa stoga podaci služe kao orijentir.</p>
-            <p><strong>Izvor podataka i Zahvalnica:</strong> Svi podaci o stvarnim glasanjima političara dolaze sa fantastične platforme <a href="https://gianniravioli.com" target="_blank">Gianni Ravioli</a>. Ogromno hvala autoru na otvorenom API-ju bez kojeg ovaj projekat ne bi bio moguć! Podaci se koriste pod <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons BY 4.0</a> licencom.</p>
+            <h3>📝 Disclaimer (Odricanje od odgovornosti)</h3>
+            <p><strong>Napomena:</strong> Ovi rezultati su kreirani od strane entuzijaste i ne trebaju se uzimati zdravo za gotovo. Aplikacija je <i>open-source</i> i koristi matematičku aproksimaciju ideoloških stavova (Manhattan distance) za poređenje sa strankama.</p>
+            <p><strong>Izvor podataka i Zahvalnica:</strong> Svi podaci o stvarnim glasanjima političara dolaze sa fantastične platforme <a href="https://gianniravioli.com" target="_blank">Gianni Ravioli</a>. Ogromno hvala autoru na otvorenom API-ju bez kojeg ovaj projekat ne bi bio moguć! Podaci se koriste pod <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons BY 4.0</a> licencom. OpenAPI i autor pružaju sva stvarna parlamentarna i ostala glasanja, a ja sam uz pomoć par skripti i filtriranja pokušao za kratko vrijeme izvući najbitnije, koje se reflektuju kroz pitanja i logiku.</p>
         </div>
         <div class="disclaimer-footer">
-            <h3>📝 O projektu i odricanje od odgovornosti (Disclaimer)</h3>
-            <p><strong>Status projekta:</strong> Ovaj kompas je nezavisni, <i>open-source</i> projekat kreiran od strane entuzijasta. Njegova svrha je isključivo informativna i zabavna, a rezultate ne treba uzimati zdravo za gotovo. Algoritam koristi <i>Manhattan distance</i> formulu za aproksimaciju ideoloških stavova na bazi 32 pitanja.</p>
-            <p><strong>Zašto samo 68 političara?</strong> Zbog tehničkih i vremenskih ograničenja (constrainst) bilo je nemoguće savršeno mapirati mišljenja i obraditi stotine hiljada glasanja svih poslanika na svim nivoima u BiH. Zato uzorak sadrži 68 prominentnih i aktivnih parlamentaraca. Pojedinci izlistani u Vašim rezultatima služe kao "spiritualni" predstavnici Vaše ideologije – imajte na umu da pojedinci nerijetko odstupaju od zvaničnog statuta svoje stranke u stvarnim glasanjima.</p>
-            <p><strong>Izvor podataka i Licenca:</strong> Sva stvarna parlamentarna glasanja povlače se putem javnog API-ja sa platforme <a href="https://gianniravioli.com" target="_blank">Gianni Ravioli</a>. Ogromno hvala autoru bez kojeg ovaj nivo preciznosti ne bi bio moguć. Svi navedeni podaci koriste se pod licencom <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International (CC BY 4.0)</a>.</p>
+            <h3>📝 O projektu</h3>
+            <p><strong>Status projekta:</strong> Ovaj kompas je nezavisni, <i>open-source</i> projekat kreiran od strane entuzijasta. Njegova svrha je isključivo informativna i zabavna, a rezultate ne treba uzimati zdravo za gotovo. Program je <b> OPEN SOURCE </b> i ide pod licencom <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GLPv3</a>.</p>
+            <p><strong>Spiritualni političari i ograničen broj?</strong> Zbog tehničkih i vremenskih ograničenja (constrainst) bilo je nemoguće savršeno mapirati mišljenja i obraditi stotine hiljada glasanja svih poslanika na svim nivoima u BiH. Zato uzorak sadrži 68 prominentnih i aktivnih parlamentaraca. Pojedinci izlistani u Vašim rezultatima služe kao "spiritualni" predstavnici Vaše ideologije – imajte na umu da pojedinci nerijetko odstupaju od zvaničnog statuta svoje stranke u stvarnim glasanjima.</p>
+            <p><strong>Kreator projekta i motivacija kreacije istog:</strong> Kreator ovog projekta je entuzijasta i proponent slobode ljudi, ljubavi i sloge, koji gaji i ljubav prema hobiju - obradi podataka, radio amaterizmu, astronomiji, Linux-u, matematici, kontributor dosta velikih projekata i patcheva za razne distro-e, Wikimedia tim i tako dalje... <br>Također i networking kroz radio amaterizam, slobodno me i dodajte na platformama, pošaljite poruku, uvijek ću pomoći ako kome šta treba ili ima tko kakvu ideju / pitanje za šta! I vice versa, nadam se :) Svakako trenutno i job-huntam, pa ^^ Hit me up! :D<br><br><b>Moji kontakti i linkovi:</b><ul><li>Moj blog: <a href="https://ituco.dev">ituco.dev</a></li><li>Moj GitHub: <a href="https://github.com/e75ti">github.com/e75ti</a></li></ul></p>
         </div>
         <button class="btn-share" onclick="downloadImage()">📸 Preuzmi za Instagram / Story</button>
     </div>
@@ -45,19 +43,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
         function downloadImage() {
-            document.querySelector('.btn-share').style.display = 'none';
-            const detailsElements = document.querySelectorAll('details');
-            detailsElements.forEach(d => d.removeAttribute('open'));
+            // Privremeno mijenjamo dizajn da slika bude savršena za IG
+            const exportArea = document.getElementById("export-area");
+            exportArea.style.padding = "30px";
+            exportArea.style.background = "#ffffff";
+            exportArea.style.borderRadius = "0px"; // Instagram story voli oštre rubove na slikama
+            
+            document.querySelector('.btn-share').innerText = "Generišem sliku...";
 
-            html2canvas(document.getElementById("capture-area"), {
-                backgroundColor: "#f4f7f6",
+            // SADA SLIKAMO SAMO EXPORT-AREA
+            html2canvas(exportArea, {
+                backgroundColor: "#ffffff",
                 scale: 2 
             }).then(canvas => {
                 let link = document.createElement('a');
                 link.download = 'Moj_Izborni_Profil_BiH.png';
                 link.href = canvas.toDataURL('image/png');
                 link.click();
-                document.querySelector('.btn-share').style.display = 'block';
+                
+                // Vraćanje originalnog dizajna
+                exportArea.style.padding = "0px";
+                exportArea.style.background = "transparent";
+                document.querySelector('.btn-share').innerText = "📸 Preuzmi za Instagram / Story";
             });
         }
     </script>
