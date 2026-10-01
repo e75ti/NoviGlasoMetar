@@ -43,28 +43,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
         function downloadImage() {
-            // Privremeno mijenjamo dizajn da slika bude savršena za IG
             const exportArea = document.getElementById("export-area");
-            exportArea.style.padding = "30px";
-            exportArea.style.background = "#ffffff";
-            exportArea.style.borderRadius = "0px"; // Instagram story voli oštre rubove na slikama
+            const shareBtn = document.querySelector('.btn-share');
             
-            document.querySelector('.btn-share').innerText = "Generišem sliku...";
+            shareBtn.innerText = "⏳ Generišem sliku...";
+            shareBtn.style.pointerEvents = "none"; // Spriječava dupli klik
 
-            // SADA SLIKAMO SAMO EXPORT-AREA
+            // Mali vizuelni popravci prije slikanja
+            exportArea.style.padding = "20px";
+            exportArea.style.background = "#ffffff";
+            
+            // KLJUČNO ZA MOBITELE: Popravlja bug sa pomaknutom slikom
             html2canvas(exportArea, {
                 backgroundColor: "#ffffff",
-                scale: 2 
+                scale: 2, // Zadržavamo visoku rezoluciju
+                scrollY: -window.scrollY, // Fiksira problem ako je korisnik skrolao dolje
+                windowWidth: document.documentElement.offsetWidth, // Fiksira širinu
+                useCORS: true // Pomaže ako se slike povlače s drugog izvora
             }).then(canvas => {
                 let link = document.createElement('a');
-                link.download = 'Moj_Izborni_Profil_BiH.png';
+                link.download = 'GlasoMetar_Moj_Profil.png';
                 link.href = canvas.toDataURL('image/png');
                 link.click();
                 
-                // Vraćanje originalnog dizajna
+                // Vraćanje na staro nakon preuzimanja
                 exportArea.style.padding = "0px";
                 exportArea.style.background = "transparent";
-                document.querySelector('.btn-share').innerText = "📸 Preuzmi za Instagram / Story";
+                shareBtn.innerText = "📸 Preuzmi za Instagram / Story";
+                shareBtn.style.pointerEvents = "auto";
             });
         }
     </script>

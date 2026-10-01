@@ -147,3 +147,54 @@ summary { font-weight: bold; outline: none; }
 .disclaimer-footer p { margin-bottom: 12px; }
 .disclaimer-footer a { color: #1a4375; font-weight: 700; text-decoration: none; }
 .disclaimer-footer a:hover { text-decoration: underline; color: #dc2626; }
+
+/* =========================================
+   OPTIMIZACIJA ZA MOBILNE UREĐAJE (100% ŠIRINA I TAČNA SLIKA)
+   ========================================= */
+@media (max-width: 600px) {
+    body {
+        padding: 0;
+    }
+    
+    /* Na mobitelu, glavni kontejner ide od ruba do ruba ekrana */
+    .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        padding: 15px 10px !important;
+        box-shadow: none !important;
+    }
+    
+    /* Kontejner grafikona sada prirodno zauzima sav prostor */
+    .chart-container {
+        position: relative !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto 30px auto !important;
+        padding: 5px !important; 
+        border: none !important;
+        background: transparent !important;
+    }
+
+    /* Prisiljavamo Canvas da sluša širinu bez zbunjivanja */
+    canvas#compassChart {
+        width: 100% !important;
+        height: auto !important;
+    }
+    
+    /* Sitna uljepšavanja fontova za mobitel */
+    .section-title { font-size: 22px; margin-top: 30px; }
+    .axis-title { font-size: 16px; margin-bottom: 8px; }
+    .bar-container { height: 35px; }
+    .bar-left, .bar-right { font-size: 14px; padding: 0 10px; }
+    .axis-labels { font-size: 11px; }
+    
+    .pol-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 15px;
+    }
+    .pol-btn { width: 100%; text-align: center; }
+}
