@@ -4,11 +4,9 @@ GlasoMetar BiH je web aplikacija sa interaktivnim političkim kompasom i 8values
 
 ## Mogućnosti
 
-- **Interaktivni kviz**: Pitanja zasnovana na stvarnim zakonima i odlukama iz parlamentarne prakse.
-- **Dvostruka vizuelizacija**: Prikaz rezultata kroz standardni politički kompas (ekonomska i društvena os) i 8values raspodjelu.
-- **Obrada podataka**: Automatsko mapiranje političara i stranaka pomoću Python skripte (`auto_stranke_fix3.py`) i JSON baza podataka.
-- **Instagram Story eksport**: Mogućnost generisanja i preuzimanja rezultata u 9:16 formatu visoke rezolucije (`html2canvas`).
-- **Responzivan dizajn**: Prilagođeno za rad na desktop i mobilnim uređajima sa optimizovanim prikazom grafikona.
+- **Interaktivni kviz**: Pitanja zasnovana na stvarnim zakonima i odlukama iz parlamentarne prakse
+- **Vizuelizacija**: Prikaz rezultata kroz standardni politički kompas (ekonomska i društvena osa) i 8values
+- **Eksport**: Mogućnost generisanja i preuzimanja rezultata u 9:16 formatu visoke rezolucije (`html2canvas`).
 
 ## Struktura projekta
 
@@ -32,7 +30,7 @@ GlasoMetar BiH je web aplikacija sa interaktivnim političkim kompasom i 8values
 
 ## Kako je došlo do ovoga?
 
-Pa, praktično sam se opredijelio, kao i svi mi pred same izbore i pitanja: "Hm, za koga glasati, ko je onako meni najsličniji, koje su nam bitne stvari?" i počeo sam istraživati i kroz dan dva je nastao ovaj projekat nakon obrade podataka (veliko hvala gianniravioli), program je klasični politički kompas i 8values logika (Manhattan distance algoritam) plus lokalna glasanja s Parlamenta i slično, te poređenje kroz Manhattan "kome sam najsličniji". Ovo me je dosta podsjećalo na [glasometar.ba](https://glasometar.ba] koji je lijepo napravljen od strane Udruženja Zašto Ne, pa razmišljajući kako da ovo nazovem rekoh - NoviGlasoMetar! Svježija edicija!
+Pa, praktično sam se opredijelio, kao i svi mi pred same izbore i pitanja: "Hm, za koga glasati, ko je onako meni najsličniji, koje su nam bitne stvari?" i počeo sam istraživati i kroz dan dva je nastao ovaj projekat nakon obrade podataka (veliko hvala gianniravioli), program je klasični politički kompas i 8values logika (Manhattan distance algoritam) plus lokalna glasanja s Parlamenta i slično, te poređenje kroz Manhattan "kome sam najsličniji". Ovo me je dosta podsjećalo na [glasometar.ba](https://glasometar.ba) koji je lijepo napravljen od strane Udruženja Zašto Ne, pa razmišljajući kako da ovo nazovem rekoh - NoviGlasoMetar! Svježija edicija!
 
 Kako volim što jednostavnije stranice, praktične, brze, nema robots, nema ništa posebno na njoj;
 - Frontend: HTML5, CSS3, Vanilla JavaScript
